@@ -1,0 +1,87 @@
+.notebook-form {
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #fffdf5;
+    border: 1px solid #ccc;
+    border-left: 8px solid #d23f31;
+    border-radius: 8px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.holes {
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.hole {
+    width: 8px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+.form-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-content label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-content input,
+.form-content textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 8px 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.form-content textarea {
+    height: 100px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.form-buttons button {
+    flex: 1;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+.save-button {
+    background-color: #4CAF50; /* green */
+    color: white;
+}
+
+.save-button:hover {
+    background-color: #449d48;
+}
+
+.cancel-button {
+    background-color: #f44336; /* red */
+    color: white;
+}
+
+.cancel-button:hover {
+    background-color: #d9382c;
+}
