@@ -28,14 +28,10 @@ function ListForm({onSubmit, closeModal}: ListFormProps){
             </div>
             <div className="form-content">
                 <label>Create new list</label>
-                <label>
-                    Title:
-                    <input value={title} maxLength={128} onChange={(e) => setTitle(e.target.value)} required/>
-                </label>
-                <label>
-                    Description:
-                    <input value={description} maxLength={512} onChange={(e) => setDescription(e.target.value)}/>
-                </label>
+                <label> Title: </label>
+                <input type="text" value={title} maxLength={128} onChange={(e) => setTitle(e.target.value)} required/>
+                <label>Description:</label>
+                <textarea value={description} cols={5} maxLength={512} onChange={(e) => setDescription(e.target.value)}/>
                 <div className="form-buttons">
                     <button type="submit" className="save-button">Create</button>
                     <button type="button" onClick={() => closeModal()} className="cancel-button">Cancel</button>
