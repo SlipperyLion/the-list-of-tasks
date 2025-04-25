@@ -1,0 +1,43 @@
+
+.list-create-button {
+    display: flex;
+    flex-direction: column;
+    background: white;  /* Removed transparency */
+    border: 2px dashed #ccc; /* Dotted grey border */
+    border-radius: 8px;
+    padding: 16px;
+    width: 350px;
+    height: 250px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* To position the kebab menu relative to this container */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.list-create-button:hover {
+    background: #e2e2e2;
+}
+.list-create-button .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #777; /* Changed to match the dotted line color */
+    margin: 0;
+}
+
+
+.plus-circle {
+    width: 50px; /* Size of the circle */
+    height: 50px;
+    background-color: #777; /* Red color */
+    border-radius: 50%; /* Circle shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.plus-circle svg {
+    fill: white; /* Color of the plus icon */
+    width: 24px;
+    height: 24px;
+}

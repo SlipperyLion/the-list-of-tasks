@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import "../../styles/KebabMenuStyle.css"
 interface KebabMenuProps {
     onEdit: () => void;
     onDelete: () => void;
@@ -7,25 +7,24 @@ interface KebabMenuProps {
 
 function KebabMenu({ onEdit, onDelete }: KebabMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
-
+    function handleKebabPropogation(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+    }
+    function handleEdit(){
+        onEdit();
+        setIsOpen(!isOpen);
+    }
+    function handleDelete(){
+        onDelete();
+        setIsOpen(!isOpen);
+    }
     return (
-        <div className="kebab-container" style={{ position: 'relative' }}>
+        <div className="kebab-container" onClick={handleKebabPropogation}>
             <button onClick={() => setIsOpen(!isOpen)}>⋮</button>
             {isOpen && (
-                <ul className="kebab-menu" style={{
-                    position: 'absolute',
-                    top: '100%',
-                    right: 0,
-                    background: 'white',
-                    border: '1px solid #ddd',
-                    borderRadius: '4px',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                    listStyle: 'none',
-                    margin: 0,
-                    padding: '4px 0',
-                }}>
-                    <li onClick={onEdit} style={{ padding: '8px 16px', cursor: 'pointer' }}>Edit</li>
-                    <li onClick={onDelete} style={{ padding: '8px 16px', cursor: 'pointer' }}>Delete</li>
+                <ul className="kebab-menu" >
+                    <li onClick={handleEdit} className = "kebab-button">Edit</li>
+                    <li onClick={handleDelete} className="kebab-button">Delete</li>
                 </ul>
             )}
         </div>

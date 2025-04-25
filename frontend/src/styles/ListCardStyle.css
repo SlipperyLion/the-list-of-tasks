@@ -1,0 +1,73 @@
+.notebook-page {
+    display: flex;
+    flex-direction: row; /* Align holes and content horizontally */
+    background: #fffdf5;
+    border: 1px solid #ccc;
+    border-left: 8px solid #d23f31;
+    border-radius: 8px;
+    padding: 16px;
+    width: 350px;
+    height: 250px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative; /* To position the kebab menu relative to this container */
+    cursor: pointer;
+}
+.notebook-page:hover {
+    background: #fff1b3  ; /* Light peach for hover effect */
+}
+.holes {
+    width: 20px;
+    display: flex;
+    flex-direction: column; /* Ensure holes are vertically aligned */
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.hole {
+    width: 8px;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden; /* Ensures child content is clipped */
+
+}
+
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 8px 0;
+    display: -webkit-box; /* Required for line clamping */
+    -webkit-box-orient: vertical; /* Ensures that text is treated as a vertical box */
+    -webkit-line-clamp: 2; /* Limits the text to 2 lines */
+    overflow: hidden; /* Hides overflowed text */
+    text-overflow: ellipsis; /* Adds ellipsis when text is too long */
+}
+
+.description {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box; /* Required for line clamping */
+    -webkit-box-orient: vertical; /* Ensures the text is treated as a vertical box */
+    -webkit-line-clamp: 4; /* Limits the text to 4 lines */
+    overflow: hidden; /* Hides overflowed text */
+    text-overflow: ellipsis; /* Adds ellipsis when text is too long */
+}
+
+.timestamp {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: auto;
+    padding-left: 10px;
+}
