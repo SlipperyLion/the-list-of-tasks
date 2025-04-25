@@ -9,7 +9,7 @@ function KebabMenu({ onEdit, onDelete }: KebabMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="kebab-container" style={{ position: 'relative' }}>
+        <div className="kebab-container" style={{ position: 'relative', display:'inline-block'}}>
             <button onClick={() => setIsOpen(!isOpen)}>⋮</button>
             {isOpen && (
                 <ul className="kebab-menu" style={{

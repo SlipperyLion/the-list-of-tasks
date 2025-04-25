@@ -22,8 +22,12 @@ body{
   font-weight: 600;
   color: #333;
   display: flex;
-  justify-content: space-between; /* Aligns title and nav to the sides */
-  align-items: center; /* Vertically centers items */
+  justify-content: space-between;  /* Pushes title and nav to opposite sides */
+  align-items: center;  /* Vertically centers items */
+}
+
+.app-header p {
+  margin: 0; /* Removes default margin */
 }
 
 nav {
