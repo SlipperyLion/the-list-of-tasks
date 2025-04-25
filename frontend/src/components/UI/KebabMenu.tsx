@@ -7,9 +7,11 @@ interface KebabMenuProps {
 
 function KebabMenu({ onEdit, onDelete }: KebabMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
-
+    function handleKebabPropogation(e: React.MouseEvent<HTMLDivElement>) {
+        e.stopPropagation();
+    }
     return (
-        <div className="kebab-container">
+        <div className="kebab-container" onClick={handleKebabPropogation}>
             <button onClick={() => setIsOpen(!isOpen)}>⋮</button>
             {isOpen && (
                 <ul className="kebab-menu" >
