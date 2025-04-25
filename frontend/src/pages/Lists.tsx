@@ -1,11 +1,14 @@
-import KebabMenu from "../components/UI/KebabMenu.tsx";
+import ListCreateCard from "../components/List/ListCreateCard.tsx";
 import {useState} from "react";
 import ListCreateModal from "../components/List/ListCreateModal.tsx";
 
 function Lists(){
     const [showModal, setShowModal] = useState(false);
-    function handleModal(){
+    function closeModal(){
         setShowModal(false);
+    }
+    function openModal(){
+        setShowModal(true);
     }
     function handleSubmit(){
         alert("YAYYYYY")
@@ -14,9 +17,9 @@ function Lists(){
         <>
             <div style={{ display: 'flex' , alignItems: 'center' }}>
                 <h1>Lists PAGEEE!!</h1>
-                <KebabMenu onEdit={()=>setShowModal(true)} onDelete={()=>alert("B")}></KebabMenu>
+                <ListCreateCard onCLick={openModal}></ListCreateCard>
             </div>
-            {showModal && (<ListCreateModal onSubmit={handleSubmit} closeModal={handleModal}/>)}
+            {showModal && (<ListCreateModal onSubmit={handleSubmit} closeModal={closeModal}/>)}
         </>
     )
 }
