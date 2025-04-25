@@ -47,11 +47,11 @@
     margin-bottom: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    resize: vertical;
+    resize: none;
 }
 
 .form-content textarea {
-    height: 100px;
+    height: 120px;
 }
 
 .form-buttons {
@@ -84,4 +84,12 @@
 
 .cancel-button:hover {
     background-color: #d9382c;
+}
+.warning{
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #f44336;
+}
+.char-counter{
+    font-size: 0.85rem;
 }
