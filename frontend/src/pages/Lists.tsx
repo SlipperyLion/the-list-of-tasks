@@ -5,6 +5,7 @@ import ListCard from "../components/List/ListCard.tsx";
 import {ListSchema, ListUpdate} from "../models/ListSchema.ts";
 import {getAllLists, deleteList, createList, updateList} from "../api/listService.ts"
 import "../styles/ListsPageStyle.css"
+import {useNavigate} from 'react-router-dom'
 
 function Lists(){
     const [showModal, setShowModal] = useState(false);
@@ -13,6 +14,7 @@ function Lists(){
     const [data, setData] = useState<ListSchema[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async()=> {
             try {
@@ -96,8 +98,8 @@ function Lists(){
 
     }
 
-    function routeToList(){
-
+    function RouteToList(id: number){
+        navigate(`/list/${id}`);
     }
 
     if (loading){return <div>Loading...</div>}
@@ -116,7 +118,7 @@ function Lists(){
                                 list={list}
                                 onEdit={toggleEditModal}
                                 onDelete={handleDelete}
-                                onClick={routeToList}
+                                onClick={RouteToList}
                             />
                         ))}
                         <ListCreateCard onClick={toggleModal} />
@@ -125,5 +127,5 @@ function Lists(){
             </div>
         </>
     );
-            };
+}
 export default Lists

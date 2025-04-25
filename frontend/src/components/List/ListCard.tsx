@@ -4,7 +4,7 @@ import "../../styles/ListCardStyle.css"
 
 interface ListCardProps{
     list: ListSchema;
-    onClick:() => void;
+    onClick: (id:number) => void;
     onEdit: (list: ListSchema) => void;
     onDelete: (id: number) => void;
 
@@ -18,6 +18,9 @@ function ListCard({list, onEdit, onDelete, onClick}: ListCardProps){
     function handleDelete(){
         onDelete(list.id);
     }
+    function handleClick(){
+        onClick(list.id);
+    }
 
     const date = new Date(list.updated_at);
     const formattedDate = date.toLocaleString('en-US', {
@@ -30,7 +33,7 @@ function ListCard({list, onEdit, onDelete, onClick}: ListCardProps){
     });
     return (
         <>
-            <div className="notebook-page" onClick={onClick}>
+            <div className="notebook-page" onClick={handleClick}>
                 <div className="holes">
                     <div className="hole"></div>
                     <div className="hole"></div>
