@@ -1,6 +1,6 @@
 from fastapi.params import Depends
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from sqlalchemy import select, update, delete
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select, update, delete, func
 from starlette.exceptions import HTTPException
 
 from .models import TaskModel
@@ -8,10 +8,15 @@ from .schemas import TaskOut, TaskCreate, TaskUpdate, TaskPatch
 from backend.database import get_session
 from typing import List
 
+#Imported to use as an acceptable solution for updating updated_at field for lists. Any updates for List table are for that purpose. Might find a better solution.
+from backend.lists.models import ListModel
+
 async def create_task(task_in: TaskCreate, session: AsyncSession = Depends(get_session)) -> TaskOut:
     new_task = TaskModel(title=task_in.title, is_checked = task_in.is_checked, is_priority = task_in.is_priority, list_id = task_in.list_id)
     try:
         session.add(new_task)
+        list = await session.get(ListModel, task_in.list_id)
+        list.updated_at = func.current_timestamp()
         await session.commit()
         await session.refresh(new_task)
     except Exception as e:
@@ -46,6 +51,8 @@ async def update_task(id:int, task_in:TaskUpdate, session: AsyncSession = Depend
         updated_task = result.first()
         if not updated_task:
             raise HTTPException(status_code=404, detail="Task not found")
+        list = await session.get(ListModel, updated_task.list_id)
+        list.updated_at = func.current_timestamp()
         await session.commit()
     except Exception as e:
         print(e)
@@ -71,6 +78,8 @@ async def patch_task(id:int, task_in: TaskPatch, session: AsyncSession = Depends
         patched_task = result.first()
         if not patched_task:
             raise HTTPException(status_code=404, detail="Task not found")
+        list = await session.get(ListModel, patched_task.list_id)
+        list.updated_at = func.current_timestamp()
         await session.commit()
     except Exception as e:
         print(e)
@@ -80,6 +89,9 @@ async def patch_task(id:int, task_in: TaskPatch, session: AsyncSession = Depends
 
 async def delete_task(id:int, session: AsyncSession = Depends(get_session)):
     if(id <= 0): raise HTTPException(status_code=400, detail="Bad ID")
+    task = await session.get(TaskModel, id)
+    list = await session.get(ListModel, task.list_id)
+    list.updated_at = func.current_timestamp()
     statement = delete(TaskModel).where(TaskModel.id == id)
     result = await session.execute(statement)
     await session.commit()
