@@ -1,42 +1,45 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Century Gothic;
+  background: #f4f4f4;
+  height: 100vh;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.app-header {
+  width: 100%;
+  background-color: #fffdf5;
+  border-bottom: 3px solid #d23f31;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  font-size: 2rem;
+  font-family: "Century Gothic", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  justify-content: space-between; /* Aligns title and nav to the sides */
+  align-items: center; /* Vertically centers items */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+nav {
+  padding: 10px 20px; /* Adjusted padding */
 }
 
-.card {
-  padding: 2em;
+nav a {
+  color: #333;
+  text-decoration: none;
+  padding: 6px 12px;
+  margin-right: 12px; /* Increased margin between links */
+  font-size: 1.2rem;
 }
 
-.read-the-docs {
-  color: #888;
+nav a:hover {
+  background-color: #d23f31;
+  color: white;
+  border-radius: 4px;
 }
