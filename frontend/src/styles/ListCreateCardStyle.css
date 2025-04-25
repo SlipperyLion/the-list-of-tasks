@@ -14,7 +14,9 @@
     justify-content: center;
     cursor: pointer;
 }
-
+.list-create-button:hover {
+    background: #e2e2e2;
+}
 .list-create-button .title {
     font-size: 1.5rem;
     font-weight: bold;

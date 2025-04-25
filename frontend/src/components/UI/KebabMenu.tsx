@@ -10,13 +10,21 @@ function KebabMenu({ onEdit, onDelete }: KebabMenuProps) {
     function handleKebabPropogation(e: React.MouseEvent<HTMLDivElement>) {
         e.stopPropagation();
     }
+    function handleEdit(){
+        onEdit();
+        setIsOpen(!isOpen);
+    }
+    function handleDelete(){
+        onDelete();
+        setIsOpen(!isOpen);
+    }
     return (
         <div className="kebab-container" onClick={handleKebabPropogation}>
             <button onClick={() => setIsOpen(!isOpen)}>⋮</button>
             {isOpen && (
                 <ul className="kebab-menu" >
-                    <li onClick={onEdit} className = "kebab-button">Edit</li>
-                    <li onClick={onDelete} className="kebab-button">Delete</li>
+                    <li onClick={handleEdit} className = "kebab-button">Edit</li>
+                    <li onClick={handleDelete} className="kebab-button">Delete</li>
                 </ul>
             )}
         </div>

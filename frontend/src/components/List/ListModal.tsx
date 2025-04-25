@@ -2,11 +2,12 @@ import "../../styles/ModalStyle.css"
 import ListForm from "./ListForm";
 
 interface CreateModalProps{
+    isEdit:boolean;
     onSubmit: (title: string, description: string) => void;
     closeModal: () => void;
 }
 
-function ListCreateModal({onSubmit, closeModal}: CreateModalProps) {
+function ListCreateModal({isEdit,onSubmit, closeModal}: CreateModalProps) {
 
     function handleCloseModal(){
         closeModal();
@@ -14,7 +15,7 @@ function ListCreateModal({onSubmit, closeModal}: CreateModalProps) {
     return(
         <div className="modal-backdrop">
             <div className="modal-content">
-                <ListForm onSubmit={onSubmit} closeModal={handleCloseModal} />
+                <ListForm isEdit ={isEdit} onSubmit={onSubmit} closeModal={handleCloseModal} />
             </div>
         </div>
     )

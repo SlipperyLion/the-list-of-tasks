@@ -1,0 +1,40 @@
+.list-manager {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.list-cards-container {
+    display: flex;
+    flex-wrap: wrap;  /* Allow wrapping of cards */
+    justify-content: flex-start;
+    gap: 16px;  /* Space between cards */
+    width: 100%;
+}
+
+.list-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    width: 250px;  /* Fixed width for each card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.list-card h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.list-card p {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.list-card p:last-child {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #777;
+}
