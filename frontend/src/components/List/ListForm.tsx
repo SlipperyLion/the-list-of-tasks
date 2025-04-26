@@ -30,10 +30,10 @@ function ListForm({isEdit,onSubmit, closeModal}: ListFormProps){
             <div className="form-content">
                 <label>{isEdit? "Edit list" : "Create new list"}</label>
                 <label> Title: </label>
-                <input type="text" value={title} maxLength={128} onChange={(e) => setTitle(e.target.value)} required/>
+                <input type="text" value={title} maxLength={128} onChange={(e) => setTitle(e.target.value)} required placeholder="List title..."/>
                 <p className={`char-counter ${title.length > 108 ? 'warning' : ''}`}> {128 -title.length} characters remaining</p>
                 <label>Description:</label>
-                <textarea value={description} cols={8} maxLength={512} onChange={(e) => setDescription(e.target.value)}/>
+                <textarea value={description} cols={8} maxLength={512} onChange={(e) => setDescription(e.target.value)} placeholder="List description..."/>
                 <p className={`char-counter ${description.length > 462 ? 'warning' : ''}`}> {512 -description.length} characters remaining</p>
                 <div className="form-buttons">
                     <button type="submit" className="save-button">{isEdit? "Edit" : "Create"}</button>

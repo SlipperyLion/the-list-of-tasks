@@ -25,7 +25,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Lists />} />
                 <Route path="/about" element={<About />} />
-                <Route path="/list/:list_id" element={<ListDetailPage />} />
+                <Route path="/list/:list_id_string" element={<ListDetailPage />} />
             </Routes>
         </Router>
     </>

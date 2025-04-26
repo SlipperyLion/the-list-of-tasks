@@ -20,8 +20,8 @@ async def create_task(task_in: TaskCreate, async_session: AsyncSession = Depends
 async def get_task(id: int, async_session: AsyncSession = Depends(get_session)):
     task = await service.get_task(id, async_session)
     return task
-
-@router.get("/list/{id}", response_model=List[TaskOut])
+# PATH {X} must be same as X. Learned the hard way.
+@router.get("/list/{list_id}", response_model=List[TaskOut])
 async def get_tasks_from_list(list_id: int, async_session: AsyncSession = Depends(get_session)):
     tasks_list = await service.get_tasks_from_list(list_id, async_session)
     return tasks_list

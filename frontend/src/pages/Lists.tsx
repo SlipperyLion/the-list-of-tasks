@@ -113,6 +113,7 @@ function Lists(){
             <div className="list-manager">
                 <div className="list-cards-container">
                     <div className="list-cards-container">
+                        <ListCreateCard onClick={toggleModal} />
                         {data.map((list: ListSchema) => (
                             <ListCard
                                 list={list}
@@ -120,9 +121,7 @@ function Lists(){
                                 onDelete={handleDelete}
                                 onClick={RouteToList}
                             />
-                        ))}
-                        <ListCreateCard onClick={toggleModal} />
-                    </div>
+                        ))}</div>
                 </div>
             </div>
         </>
