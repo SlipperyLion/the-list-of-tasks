@@ -5,27 +5,28 @@
     border-left: 8px solid #d23f31;
     border-radius: 8px;
     padding: 16px;
-    margin: 0 auto;
-    margin-top: 20px;
-    width: 60%;
-    height: 100%;
+    margin: 10px auto 0 auto;
+    width: 70%;
+    height: 70%;
     min-height: 40vh;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     position: relative;
 
 }
 
-.holes {
+.dynamic-holes {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
-    margin-right: 12px;
+    gap: 70px;
     padding: 12px 0;
-    height: 100%;
+    pointer-events: none;
 }
-.hole {
+.dynamic-hole {
     width: 8px;
     height: 8px;
     background-color: #ddd;
@@ -34,24 +35,53 @@
 
 .task-content {
     flex: 1;
-    width: 100%;
+    margin-left: 30px;
+    width: 70%;
 }
+.task-header {
+    display: flex;
+    align-items: center;
+}
+
+.task-title-wrapper {
+    display: flex;
+}
+
+.tasks-backarrow {
+    padding: 6px 12px;
+    margin-right: 12px;
+    width: 40px;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.tasks-backarrow:hover{
+    background-color: #d23f31;
+    fill: white;
+}
+
 .top-bar {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 .list-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: bold;
+    word-wrap: break-word;
+    overflow: auto;
     color: #333;
     margin-bottom: 8px;
 }
 
 .list-description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 16px;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    overflow: auto;
+    height: 100px;
 }
 
 .task-list {
@@ -62,5 +92,6 @@
     flex-direction: column;
     gap: 12px;
     width: 100%;
+    margin-bottom: 20px;
 }
 

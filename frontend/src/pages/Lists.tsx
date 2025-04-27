@@ -51,11 +51,10 @@ function Lists(){
             try {
                 const response = await createList({title,description});
                 setData(prevList => [response, ...prevList]);
+                alert("Successfully created list");
             } catch (error) {
                 setError("Error creating list");
                 throw error;
-            } finally{
-                alert("Successfully created list");
             }
         }
         addList();
@@ -65,16 +64,16 @@ function Lists(){
         const deleteData = async(id:number)=>{
             try {
                 await deleteList(id);
+                const sortedData = data.filter(item => item.id !== id);
+                setData(sortedData);
+                alert("Successfully deleted list");
             } catch (error) {
                 setError("Error deleting list");
                 throw error;
-            } finally{
-            alert("Successfully deleted list");
             }
         }
         deleteData(id)
-        const sortedData = data.filter(item => item.id !== id);
-        setData(sortedData);
+
     }
 
 
@@ -90,20 +89,21 @@ function Lists(){
                 setData(updatedData.sort(
                     (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
                 );
+                alert("Successfully updated list");
 
             } catch (error) {
                 setError("Error updating list");
                 throw error;
-            } finally{
-                alert("Successfully updated list");
             }
         }
         updateData({title,description})
 
     }
 
-    function RouteToList(id: number){
-        navigate(`/list/${id}`);
+    function RouteToList(id: number, list_title:string, list_description:string){
+        const dataToPass = {title: list_title, description: list_description};
+        navigate(`/list/${id}`, {state: dataToPass});
+
     }
 
     if (loading){return <div>Loading...</div>}

@@ -1,5 +1,4 @@
 import "../../styles/TaskCardStyle.css"
-import {useState} from "react";
 import KebabMenu from "../UI/KebabMenu.tsx";
 import {TaskSchema} from "../../models/TaskSchema.ts";
 
@@ -15,16 +14,12 @@ interface TaskCardProps{
 }
 
 function TaskCard({task,isOpen, onStar,onCheck,onEdit,onDelete, onToggle}: TaskCardProps){
-    const[isStarred, setIsStarred] = useState<boolean>(task.is_priority)
-    const[isChecked, setIsChecked] = useState<boolean>(task.is_checked)
 
     function handleStar(){
         onStar(task)
-        setIsStarred(!isStarred)
     }
     function handleCheck(){
         onCheck(task)
-        setIsChecked(!isChecked)
     }
     function handleEdit(){
         onEdit(task);
@@ -33,9 +28,9 @@ function TaskCard({task,isOpen, onStar,onCheck,onEdit,onDelete, onToggle}: TaskC
         onDelete(task.id)
     }
     return(
-        <div className={`task-item${isStarred ? ' starred' : ''}`}>
-            <input type="checkbox" checked={isChecked} className="task-checkbox" onClick={handleCheck}/>
-            <svg xmlns="http://www.w3.org/2000/svg"  className={`task-star${isStarred ? ' starred' : ''}`} onClick={handleStar} viewBox="0 0 24 24" >
+        <div className={`task-item${task.is_priority ? ' starred' : ''}`}>
+            <input type="checkbox" checked={task.is_checked} className="task-checkbox" onClick={handleCheck}/>
+            <svg xmlns="http://www.w3.org/2000/svg"  className={`task-star${task.is_priority ? ' starred' : ''}`} onClick={handleStar} viewBox="0 0 24 24" >
                 <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19
                8.63 2 9.24l5.46 4.73L5.82 21z"/>
             </svg>

@@ -5,7 +5,7 @@ import "../../styles/ListCardStyle.css"
 interface ListCardProps{
     list: ListSchema;
     isOpen: boolean;
-    onClick: (id:number) => void;
+    onClick: (id:number,  title:string, description:string) => void;
     onEdit: (list: ListSchema) => void;
     onDelete: (id: number) => void;
     onToggle: () => void;
@@ -21,7 +21,7 @@ function ListCard({list, isOpen, onEdit, onDelete, onClick, onToggle}: ListCardP
         onDelete(list.id);
     }
     function handleClick(){
-        onClick(list.id);
+        onClick(list.id, list.title, (list.description ? list.description : ""));
     }
 
     const date = new Date(list.updated_at);

@@ -9,13 +9,10 @@ interface CreateModalProps{
 
 function ListCreateModal({isEdit,onSubmit, closeModal}: CreateModalProps) {
 
-    function handleCloseModal(){
-        closeModal();
-    }
     return(
         <div className="modal-backdrop">
-            <div className="modal-content">
-                <ListForm isEdit ={isEdit} onSubmit={onSubmit} closeModal={handleCloseModal} />
+            <div>
+                <ListForm isEdit ={isEdit} onSubmit={onSubmit} closeModal={closeModal} />
             </div>
         </div>
     )
