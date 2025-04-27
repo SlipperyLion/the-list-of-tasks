@@ -1,6 +1,4 @@
 #root {
-
-  text-align: center;
 }
 
 body{
@@ -32,12 +30,13 @@ body{
 
 nav {
   padding: 10px 20px;
+  margin-left: 1%;
 }
 
 nav a {
   color: #333;
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 6px 20px;
   margin-right: 12px;
   font-size: 1.2rem;
 }
