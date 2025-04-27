@@ -10,22 +10,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 999;
+    z-index: 1001;
+    animation: popIn 0.3s ease-in;
 }
 
-.modal-box {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 400px;
-    width: 100%;
-    animation: popIn 0.3s ease-out;
-}
 @keyframes popIn {
     from {
         opacity: 0;
-        transform: scale(0.96);
+        transform: scale(0.98);
     }
     to {
         opacity: 1;

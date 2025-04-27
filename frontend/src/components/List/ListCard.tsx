@@ -4,13 +4,15 @@ import "../../styles/ListCardStyle.css"
 
 interface ListCardProps{
     list: ListSchema;
-    onClick: (id:number) => void;
+    isOpen: boolean;
+    onClick: (id:number,  title:string, description:string) => void;
     onEdit: (list: ListSchema) => void;
     onDelete: (id: number) => void;
+    onToggle: () => void;
 
 }
 
-function ListCard({list, onEdit, onDelete, onClick}: ListCardProps){
+function ListCard({list, isOpen, onEdit, onDelete, onClick, onToggle}: ListCardProps){
 
     function handleEdit(){
         onEdit(list);
@@ -19,7 +21,7 @@ function ListCard({list, onEdit, onDelete, onClick}: ListCardProps){
         onDelete(list.id);
     }
     function handleClick(){
-        onClick(list.id);
+        onClick(list.id, list.title, (list.description ? list.description : ""));
     }
 
     const date = new Date(list.updated_at);
@@ -47,7 +49,7 @@ function ListCard({list, onEdit, onDelete, onClick}: ListCardProps){
                     <p className="description">{list.description}</p>
                     <p className="timestamp" id="last-updated">Last updated at: {formattedDate}</p>
                 </div>
-                <KebabMenu onEdit={handleEdit} onDelete={handleDelete}></KebabMenu>
+                <KebabMenu isOpen={isOpen} onToggle={onToggle} onEdit={handleEdit} onDelete={handleDelete}></KebabMenu>
             </div>
         </>
     )

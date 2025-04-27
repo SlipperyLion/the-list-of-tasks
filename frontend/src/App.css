@@ -4,9 +4,9 @@
 }
 
 body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Century Gothic;
+  font-family: Roboto Thin,Tahoma, Geneva, Verdana, sans-serif;
   background: #f4f4f4;
-  height: 100vh;
+  height: 100%;
 }
 
 
@@ -22,23 +22,23 @@ body{
   font-weight: 600;
   color: #333;
   display: flex;
-  justify-content: space-between;  /* Pushes title and nav to opposite sides */
-  align-items: center;  /* Vertically centers items */
+  justify-content: space-between;
+  align-items: center;
 }
 
 .app-header p {
-  margin: 0; /* Removes default margin */
+  margin: 0;
 }
 
 nav {
-  padding: 10px 20px; /* Adjusted padding */
+  padding: 10px 20px;
 }
 
 nav a {
   color: #333;
   text-decoration: none;
   padding: 6px 12px;
-  margin-right: 12px; /* Increased margin between links */
+  margin-right: 12px;
   font-size: 1.2rem;
 }
 
