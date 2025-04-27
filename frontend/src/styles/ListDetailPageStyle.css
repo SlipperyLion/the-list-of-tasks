@@ -42,6 +42,8 @@
 .task-header {
     display: flex;
     align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
 .task-title-wrapper {
@@ -84,6 +86,7 @@
     white-space: normal;
     overflow: auto;
     height: 100px;
+    margin-bottom: 10px;
 }
 
 .task-list {

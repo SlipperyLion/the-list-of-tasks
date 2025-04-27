@@ -7,6 +7,8 @@ import TaskEditModal from "../components/Task/TaskEditModal.tsx";
 import "../styles/ListDetailPageStyle.css"
 import TaskCard from "../components/Task/TaskCard";
 import {getList} from "../api/listService.ts";
+import {Toaster, toast} from "react-hot-toast";
+
 
 function ListDetailPage(){
     const [data, setData] = useState<TaskSchema[]>([]);
@@ -75,13 +77,16 @@ function ListDetailPage(){
                 if(response){
                     setData(prevList => [...prevList, response]);
                 }
-                alert("Successfully created task.")
             } catch (error) {
                 console.log(error)
-                setError("Error creating task.");
+                throw error
             }
         }
-        addTask({title, is_checked:false, is_priority:false, list_id})
+        toast.promise(addTask({title, is_checked:false, is_priority:false, list_id}), {
+            loading: "Adding Task!",
+            success: "Task Added!",
+            error: "Error adding task",
+        })
     }
     if(loading){
         return <div>Loading...</div>;
@@ -104,13 +109,16 @@ function ListDetailPage(){
                     return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
                 });
                 setData(sortedList);
-                console.log(`Successfully changed checkmark of task. ${task.id}`);
             } catch (error) {
                 console.log(error)
-                setError("Error changing priority of task.");
+                throw error
             }
         }
-        patchPriorityTask({is_priority:(!task.is_priority)})
+        toast.promise(patchPriorityTask({is_priority:(!task.is_priority)}), {
+            loading: "Prioritizing task",
+            success: "Task Prioritized!",
+            error: "Error prioritizing task",
+        })
     }
     function handleCheck(task: TaskSchema){
         const patchPriorityTask = async (taskPatch: TaskPatch) => {
@@ -120,18 +128,21 @@ function ListDetailPage(){
                     task.id === response.id ? response : task
                 );
                 setData(updatedList)
-                console.log(`Successfully changed checkmark of task. ${task.id}`);
             } catch (error) {
                 console.log(error)
-                setError("Error changing checkmark of task.");
+                throw error
             }
         }
-        patchPriorityTask({is_checked:(!task.is_checked)})
+        toast.promise(patchPriorityTask({is_checked:(!task.is_checked)}), {
+            loading: "Checking off task!",
+            success: "Task Done!",
+            error: "Error checking off task",
+        })
     }
 
     function handleEdit(title:string){
         if(!editTaskId){
-            alert("Error editing task, ID unknown")
+            toast.error('Error editing task, ID unknown')
             return
         }
         const updatedData = async(task:TaskUpdate) =>{
@@ -147,14 +158,16 @@ function ListDetailPage(){
                     return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
                 });
                 setData(sortedList);
-                alert("Successfully updated task");
-
             } catch (error) {
-                setError("Error updating task");
+                console.error(error);
                 throw error;
             }
         }
-        updatedData({title})
+        toast.promise(updatedData({title}), {
+            loading: "Updating Task!",
+            success: "Task Updated!",
+            error: "Error updating task",
+        })
 
     }
     function handleDelete(id:number){
@@ -163,13 +176,16 @@ function ListDetailPage(){
                 await deleteTask(id)
                 const sortedData = data.filter(item => item.id !== id);
                 setData(sortedData);
-                alert("Successfully deleted task");
             } catch (error) {
-                setError("Error deleting task");
+                console.error(error);
                 throw error;
             }
         }
-        deletedData(id);
+        toast.promise(deletedData(id), {
+            loading: "Deleting task!",
+            success: "Task Deleted!",
+            error: "Error deleting task",
+        })
     }
 
     function toggleKebabMenu(id:number){
@@ -179,14 +195,23 @@ function ListDetailPage(){
     function toggleModal(task?: TaskSchema){
         if(task){
             setEditTaskId(task.id)
-        }else{setEditTaskId(null);}
-        setShowModal(!showModal);
+        }else{
+            setEditTaskId(null);
+        }
+        if(!showModal){
+            setShowModal(!showModal);
+        }else{
+            setTimeout(()=> setShowModal(false), 150);
+        }
     }
     function RouteBack(){
         navigate("/");
     }
     return (
-        <>
+        <><Toaster position="bottom-center" containerStyle={{top:50, right:100}} toastOptions={{
+            success: {style:{scale:1.4 , background: '#fffdf5', borderLeft: '8px solid #d23f31'}},
+            loading: {style:{scale:1.4 , background: '#fffdf5', borderLeft: '8px solid #d23f31'}}
+        }} />
         <div className="task-notebook-page">
             {showModal && (<TaskEditModal onSubmit={handleEdit} closeModal={toggleModal} />)}
             <div className="dynamic-holes">
