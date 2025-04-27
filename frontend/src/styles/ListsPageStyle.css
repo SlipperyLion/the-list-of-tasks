@@ -7,9 +7,9 @@
 
 .list-cards-container {
     display: flex;
-    flex-wrap: wrap;  /* Allow wrapping of cards */
+    flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 16px;  /* Space between cards */
+    gap: 16px;
     width: 100%;
 }
 
@@ -18,7 +18,7 @@
     border: 1px solid #ddd;
     padding: 16px;
     border-radius: 8px;
-    width: 250px;  /* Fixed width for each card */
+    width: 250px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
