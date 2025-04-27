@@ -48,13 +48,10 @@ function Lists(){
     function toggleEditModal(list?: ListSchema){
         if(list){
             setEditListId(list.id);
+            setShowEditModal(true);
         } else{
             setEditListId(null);
-        }
-        if(!showModal) {
-            setShowEditModal(true);
-        } else {
-            setTimeout(() => setShowEditModal(false), 150);
+            setShowEditModal(false)
         }
     }
     function handleSubmit(title:string, description:string){

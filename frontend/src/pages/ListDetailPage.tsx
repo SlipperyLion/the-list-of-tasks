@@ -195,13 +195,10 @@ function ListDetailPage(){
     function toggleModal(task?: TaskSchema){
         if(task){
             setEditTaskId(task.id)
+            setShowModal(true);
         }else{
             setEditTaskId(null);
-        }
-        if(!showModal){
-            setShowModal(!showModal);
-        }else{
-            setTimeout(()=> setShowModal(false), 150);
+            setShowModal(false)
         }
     }
     function RouteBack(){
