@@ -8,9 +8,10 @@ import TaskCard from "../components/Task/TaskCard";
 
 function ListDetailPage(){
     const [loading, setLoading] = useState(true);
+    const [kebabTaskId, setKebabTaskId] = useState<number| null>(null);
     const [error, setError] = useState("");
     const [data, setData] = useState<TaskSchema[]>([]);
-    const [holeCount, setHoleCount] = useState(6);
+    const [holeCount, setHoleCount] = useState(10);
     const [list_id, setListId] = useState<number>(0);
     const {list_id_string} = useParams()
 
@@ -49,23 +50,17 @@ function ListDetailPage(){
         fetchData()
     },[list_id_string])
 
-    // Hole amount changing useEffect()
-    useEffect(() => {
-        const updateHoleCount = () => {
-            const container = document.querySelector(".task-notebook-page");
-            if (container) {
-                const height = container.clientHeight;
-                const spacing = 40; // space between holes in px
-                const count = Math.floor(height / spacing);
-                setHoleCount(count);
-            }
-        };
 
-        updateHoleCount(); // run initially
-        window.addEventListener("resize", updateHoleCount); // update on resize
 
-        return () => window.removeEventListener("resize", updateHoleCount);
-    }, [data]); // run again when the task list changes
+    function updateHoleCount(){
+        const container = document.querySelector(".task-notebook-page");
+        if (container) {
+            const height = container.clientHeight;
+            const spacing = 40; // space between holes in px
+            const count = Math.floor(height / spacing);
+            setHoleCount(count);
+        }
+    }
 
     function handleCreate(title:string){
         const addTask = async (task: TaskCreate) => {
@@ -80,6 +75,7 @@ function ListDetailPage(){
             }
         }
         addTask({title, is_checked:false, is_priority:false, list_id})
+        updateHoleCount();
     }
     if(loading){
         return <div>Loading...</div>;
@@ -131,6 +127,12 @@ function ListDetailPage(){
     }
     function handleDelete(id:number){
         alert("DELETE")
+        updateHoleCount();
+    }
+
+    function handleToggle(id:number){
+        setKebabTaskId((prev) => (prev === id ? null : id));
+
     }
     return (
         <div className="task-notebook-page">
@@ -151,10 +153,12 @@ function ListDetailPage(){
                     {data.map((task: TaskSchema) => (
                         <TaskCard
                         task={task}
+                        isOpen={kebabTaskId == task.id}
                         onStar={handleStar}
                         onCheck={handleCheck}
                         onEdit={handleEdit}
                         onDelete={handleDelete}
+                        onToggle={() => handleToggle(task.id)}
                         />
                     ))}
                 </div>

@@ -2,9 +2,13 @@
     position: relative;
     display: inline-block;
 }
+.kebab-container.open{
+    z-index: 1000
+}
 .kebab-menu{
     position: absolute;
-    right: 0;
+    right: 50px;
+    top: 10px;
     background: white;
     border: 1px solid #ddd;
     border-radius: 4px;

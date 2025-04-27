@@ -10,6 +10,7 @@ import {useNavigate} from 'react-router-dom'
 function Lists(){
     const [showModal, setShowModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
+    const [kebabListId, setKebabListId] = useState<number | null>(null);
     const [editListId, setEditListId] = useState<number | null>(null);
     const [data, setData] = useState<ListSchema[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -35,6 +36,9 @@ function Lists(){
 
     function toggleModal(){
         setShowModal(!showModal);
+    }
+    function toggleKebabMenu(id: number){
+        setKebabListId((prev) => (prev === id ? null : id));
     }
     function toggleEditModal(list?: ListSchema){
         if(list){
@@ -117,9 +121,11 @@ function Lists(){
                         {data.map((list: ListSchema) => (
                             <ListCard
                                 list={list}
+                                isOpen={kebabListId === list.id}
                                 onEdit={toggleEditModal}
                                 onDelete={handleDelete}
                                 onClick={RouteToList}
+                                onToggle={()=>toggleKebabMenu(list.id)}
                             />
                         ))}</div>
                 </div>

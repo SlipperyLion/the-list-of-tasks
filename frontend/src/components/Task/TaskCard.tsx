@@ -6,13 +6,15 @@ import {TaskSchema} from "../../models/TaskSchema.ts";
 
 interface TaskCardProps{
     task: TaskSchema
+    isOpen: boolean
     onStar:(task:TaskSchema) => void
     onCheck:(task:TaskSchema) => void
     onEdit:(task:TaskSchema) => void;
     onDelete:(id: number) => void;
+    onToggle:() => void;
 }
 
-function TaskCard({task,onStar,onCheck,onEdit,onDelete}: TaskCardProps){
+function TaskCard({task,isOpen, onStar,onCheck,onEdit,onDelete, onToggle}: TaskCardProps){
     const[isStarred, setIsStarred] = useState<boolean>(task.is_priority)
     const[isChecked, setIsChecked] = useState<boolean>(task.is_checked)
 
@@ -38,7 +40,7 @@ function TaskCard({task,onStar,onCheck,onEdit,onDelete}: TaskCardProps){
                8.63 2 9.24l5.46 4.73L5.82 21z"/>
             </svg>
             <span className="task-title">{task.title}</span>
-            <KebabMenu onEdit={handleEdit} onDelete={handleDelete}></KebabMenu>
+            <KebabMenu isOpen={isOpen} onEdit={handleEdit} onDelete={handleDelete} onToggle={onToggle}></KebabMenu>
         </div>
     )
 }
