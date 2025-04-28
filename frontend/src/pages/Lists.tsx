@@ -6,6 +6,7 @@ import {ListSchema, ListUpdate} from "../models/ListSchema.ts";
 import {getAllLists, deleteList, createList, updateList} from "../api/listService.ts"
 import "../styles/ListsPageStyle.css"
 import {useNavigate} from 'react-router-dom'
+import {Toaster, toast} from "react-hot-toast";
 
 function Lists(){
     const [showModal, setShowModal] = useState(false);
@@ -35,7 +36,11 @@ function Lists(){
     }, [])
 
     function toggleModal(){
-        setShowModal(!showModal);
+        if(!showModal) {
+            setShowModal(true);
+        } else {
+            setTimeout(() => setShowModal(false), 150);
+        }
     }
     function toggleKebabMenu(id: number){
         setKebabListId((prev) => (prev === id ? null : id));
@@ -43,21 +48,27 @@ function Lists(){
     function toggleEditModal(list?: ListSchema){
         if(list){
             setEditListId(list.id);
-        }else{setEditListId(null);}
-        setShowEditModal(!showEditModal);
+            setShowEditModal(true);
+        } else{
+            setEditListId(null);
+            setShowEditModal(false)
+        }
     }
     function handleSubmit(title:string, description:string){
         const addList = async()=>{
             try {
                 const response = await createList({title,description});
                 setData(prevList => [response, ...prevList]);
-                alert("Successfully created list");
             } catch (error) {
-                setError("Error creating list");
+                console.error(error);
                 throw error;
             }
         }
-        addList();
+        toast.promise(addList(), {
+            loading: "Creating List",
+            success: "List Created!",
+            error: "Error creating list",
+        })
 
     }
     function handleDelete(id:number){
@@ -65,14 +76,17 @@ function Lists(){
             try {
                 await deleteList(id);
                 const sortedData = data.filter(item => item.id !== id);
-                setData(sortedData);
-                alert("Successfully deleted list");
+                setData(sortedData)
             } catch (error) {
-                setError("Error deleting list");
+                console.error(error);
                 throw error;
             }
         }
-        deleteData(id)
+        toast.promise(deleteData(id), {
+            loading: "Deleting List",
+            success: "List Deleted!",
+            error: "Error deleting list",
+        })
 
     }
 
@@ -89,14 +103,16 @@ function Lists(){
                 setData(updatedData.sort(
                     (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
                 );
-                alert("Successfully updated list");
-
             } catch (error) {
-                setError("Error updating list");
+                console.error(error);
                 throw error;
             }
         }
-        updateData({title,description})
+        toast.promise(updateData({title,description}), {
+            loading: "Updating List!",
+            success: "List Updated!",
+            error: "Error updating list",
+        })
 
     }
 
@@ -112,6 +128,12 @@ function Lists(){
 
     return (
         <>
+            <Toaster position="bottom-center" containerStyle={{top:50, right:100}} toastOptions={{
+                success: {style:{scale:1.4 , background: '#fffdf5', borderLeft: '8px solid #d23f31'}},
+                error: {style:{scale:1.4 , background: '#fffdf5', borderLeft: '8px solid #d23f31'}},
+                loading: {style:{scale:1.4 , background: '#fffdf5', borderLeft: '8px solid #d23f31'}}
+
+            }} />
             {showModal && (<ListModal isEdit={false} onSubmit={handleSubmit} closeModal={toggleModal}/>)}
             {showEditModal && (<ListModal isEdit={true} onSubmit={handleEdit} closeModal={toggleEditModal}/>)}
             <div className="list-manager">

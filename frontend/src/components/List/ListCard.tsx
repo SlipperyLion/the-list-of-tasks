@@ -49,7 +49,9 @@ function ListCard({list, isOpen, onEdit, onDelete, onClick, onToggle}: ListCardP
                     <p className="description">{list.description}</p>
                     <p className="timestamp" id="last-updated">Last updated at: {formattedDate}</p>
                 </div>
-                <KebabMenu isOpen={isOpen} onToggle={onToggle} onEdit={handleEdit} onDelete={handleDelete}></KebabMenu>
+                <span>
+                    <KebabMenu isOpen={isOpen} onToggle={onToggle} onEdit={handleEdit} onDelete={handleDelete}></KebabMenu>
+                </span>
             </div>
         </>
     )

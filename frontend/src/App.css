@@ -1,6 +1,5 @@
 #root {
-
-  text-align: center;
+  overflow-x: hidden
 }
 
 body{
@@ -25,19 +24,75 @@ body{
   justify-content: space-between;
   align-items: center;
 }
+.app-content {
+  padding-top: 10px;
+  padding-bottom: 80px;
+}
+.app-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  border-top: 3px solid #d23f31;
+  font-size: 1rem;
+  font-weight: 1000;
+  font-family: "Century Gothic", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffdf5;
+  text-align: center;
+}
+.app-title-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  cursor: pointer;
+}
+.app-title-wrapper:hover{
+  background-color: #f1f1f1;
+}
+.app-logo {
+  height: 64px;
+  width: 64px;
+  object-fit: contain;
+  display: block;
+  margin-right: 8px;
+  transform: translateY(1px);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
 
+.app-footer p{
+  color: #555555;
+}
+.app-footer a{
+  color: #2e7d32;
+}
+.app-footer a:hover{
+  color: #1b5e20; /* darker green for hover */
+  text-decoration: underline;
+}
 .app-header p {
   margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: fade;
+}
+
+@media (max-width: 1000px) {
+  .app-title-wrapper p {
+    display: none;
+  }
 }
 
 nav {
   padding: 10px 20px;
+  margin-left: 8%;
 }
 
 nav a {
   color: #333;
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 6px 20px;
   margin-right: 12px;
   font-size: 1.2rem;
 }

@@ -13,12 +13,12 @@
     cursor: pointer;
 }
 .notebook-page:hover {
-    background: #fff1b3  ; /* Light peach for hover effect */
+    background: #fff1b3  ;
 }
 .holes {
     width: 20px;
     display: flex;
-    flex-direction: column; /* Ensure holes are vertically aligned */
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     margin-right: 12px;
@@ -36,7 +36,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow: hidden; /* Ensures child content is clipped */
+    overflow: hidden;
 
 }
 
@@ -46,11 +46,11 @@
     font-weight: bold;
     color: #333;
     margin: 0 0 8px 0;
-    display: -webkit-box; /* Required for line clamping */
-    -webkit-box-orient: vertical; /* Ensures that text is treated as a vertical box */
-    -webkit-line-clamp: 2; /* Limits the text to 2 lines */
-    overflow: hidden; /* Hides overflowed text */
-    text-overflow: ellipsis; /* Adds ellipsis when text is too long */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .description {
@@ -58,11 +58,11 @@
     color: #555;
     line-height: 1.4;
     margin: 0;
-    display: -webkit-box; /* Required for line clamping */
-    -webkit-box-orient: vertical; /* Ensures the text is treated as a vertical box */
-    -webkit-line-clamp: 4; /* Limits the text to 4 lines */
-    overflow: hidden; /* Hides overflowed text */
-    text-overflow: ellipsis; /* Adds ellipsis when text is too long */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .timestamp {
