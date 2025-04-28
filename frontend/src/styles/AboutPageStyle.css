@@ -1,0 +1,91 @@
+.about-notebook-page {
+    display: flex;
+    flex-direction: column;
+    background: #fffdf5; /* Light blue background */
+    border: 1px solid #ccc;
+    border-left: 8px solid #d23f31;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px auto;
+    width: 85%; /* Increased width */
+    min-height: 70vh; /* Increased height */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    position: relative;
+    font-family: Century Gothic, Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.about-section.reverse {
+    flex-direction: row-reverse; /* Reverse the order for the second section */
+}
+
+.about-image {
+    flex: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* So that the pin can be placed on top */
+    background-color: #f4f4f4; /* Light gray background for the image container */
+    border: 2px solid #ccc; /* Border around the image */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow around the image container */
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 1400px; /* Adjust the size of the images */
+    height: auto;
+    border-radius: 8px; /* Rounded corners for the image */
+}
+
+.about-text {
+    flex: 2;
+    padding: 20px;
+    text-align: center;
+    display: block;
+}
+
+.about-text h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.about-text p {
+    font-size: 1.5rem;
+    color: #333;
+}
+.pin {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-40%);
+    width: 40px;
+    height: 40px;
+    background-color: #fbc02d; /* Yellow pin */
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.4); /* Pin shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Ensure the pin is above the image */
+}
+
+.pin:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: #fbc02d transparent transparent transparent; /* Pin's tail */
+}
