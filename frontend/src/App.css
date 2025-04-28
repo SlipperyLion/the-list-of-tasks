@@ -24,7 +24,21 @@ body{
   justify-content: space-between;
   align-items: center;
 }
-
+.app-content {
+  padding-top: 10px;
+  padding-bottom: 80px;
+}
+.app-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  border-top: 3px solid #d23f31;
+  font-size: 1rem;
+  font-weight: 1000;
+  font-family: "Century Gothic", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fffdf5;
+  text-align: center;
+}
 .app-title-wrapper{
   display: flex;
   align-items: center;
@@ -47,6 +61,16 @@ body{
   background: #fff;
 }
 
+.app-footer p{
+  color: #555555;
+}
+.app-footer a{
+  color: #2e7d32;
+}
+.app-footer a:hover{
+  color: #1b5e20; /* darker green for hover */
+  text-decoration: underline;
+}
 .app-header p {
   margin: 0;
   overflow: hidden;
@@ -62,7 +86,7 @@ body{
 
 nav {
   padding: 10px 20px;
-  margin-left: 5%;
+  margin-left: 8%;
 }
 
 nav a {
